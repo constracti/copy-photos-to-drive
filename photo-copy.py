@@ -2,11 +2,10 @@ import requests
 
 from common import *
 
-access_token = token_exchange()
-
 album_dict = album_load()
 photo_dict = photo_load()
 
+access_token = token_exchange()
 for album_id, album in album_dict.items():
 	if album['copied']:
 		continue
@@ -83,3 +82,4 @@ for album_id, album in album_dict.items():
 		photo_push(photo_id, photo_dict[photo_id])
 	album['copied'] = True
 	album_save(album_dict)
+	access_token = token_exchange()
